@@ -1,0 +1,70 @@
+appId: com.xiaofu.editor
+productName: 付小付 md 编辑器
+copyright: © 2026 付小付网络科技工作室
+directories:
+  output: release/v8.0.2
+  buildResources: build
+icon: build/icon.png
+files:
+  - out/**/*
+  - package.json
+asar: true
+fileAssociations:
+  - ext: md
+    name: Markdown 文档
+    description: Markdown 文档
+    role: Editor
+    rank: Owner
+  - ext: markdown
+    name: Markdown 文档
+    description: Markdown 文档
+    role: Editor
+    rank: Owner
+  - ext: mdown
+    name: Markdown 文档
+    description: Markdown 文档
+    role: Editor
+    rank: Owner
+  - ext: mdx
+    name: MDX 文档
+    description: MDX 文档
+    role: Editor
+    rank: Owner
+  - ext: txt
+    name: 纯文本
+    description: 纯文本文件
+    role: Editor
+    rank: Default
+  - ext: text
+    name: 纯文本
+    description: 纯文本文件
+    role: Editor
+    rank: Default
+  - ext: log
+    name: 日志文件
+    description: 日志文件
+    role: Viewer
+    rank: Alternate
+mac:
+  category: public.app-category.productivity
+  icon: build/icon.icns
+  target:
+    - target: dmg
+      arch:
+        - arm64
+        - x64
+  artifactName: ${productName}-${version}-${arch}.${ext}
+win:
+  icon: build/icon.ico
+  target:
+    - target: nsis
+      arch:
+        - x64
+  artifactName: ${productName}-${version}-${arch}.${ext}
+nsis:
+  oneClick: false
+  perMachine: false
+  allowToChangeInstallationDirectory: true
+  createDesktopShortcut: true
+  createStartMenuShortcut: true
+  shortcutName: 付小付 md 编辑器

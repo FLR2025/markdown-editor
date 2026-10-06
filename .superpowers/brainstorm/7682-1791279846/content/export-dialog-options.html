@@ -1,0 +1,64 @@
+<h2>导出对话框：简约工厂风格对比</h2>
+<p class="subtitle">点击你更喜欢的方向，也可以直接告诉我想混合哪些细节</p>
+
+<style>
+  .factory-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:18px; margin-top:24px; }
+  .factory-option { background:#f7f7f5; border:1px solid #d9d9d4; border-radius:4px; overflow:hidden; cursor:pointer; transition:.16s ease; }
+  .factory-option:hover { border-color:#8a8a80; transform:translateY(-2px); box-shadow:0 8px 20px rgba(30,30,24,.10); }
+  .factory-option.selected { border:2px solid #2f302c; }
+  .factory-label { display:flex; align-items:center; justify-content:space-between; padding:10px 12px; background:#30312d; color:#f7f7f2; font:600 12px/1.2 ui-monospace,SFMono-Regular,Menlo,monospace; letter-spacing:.06em; }
+  .factory-code { color:#babcb2; font-weight:400; }
+  .factory-modal { min-height:300px; background:#fff; color:#30312d; font-family:Arial,sans-serif; }
+  .factory-head { padding:18px 20px 14px; border-bottom:1px solid #deded8; }
+  .factory-title { font-size:16px; font-weight:600; margin:0 0 5px; }
+  .factory-meta { color:#777870; font-size:11px; }
+  .factory-body { padding:14px 20px; }
+  .factory-search { height:32px; border:1px solid #bfc0b9; background:#fafaf7; display:flex; align-items:center; padding:0 10px; color:#8c8d86; font-size:11px; }
+  .factory-list { margin-top:12px; border-top:1px solid #deded8; }
+  .factory-row { display:flex; justify-content:space-between; align-items:center; padding:11px 0; border-bottom:1px solid #e5e5df; font-size:12px; }
+  .factory-row small { color:#878880; font-family:ui-monospace,monospace; }
+  .factory-actions { display:flex; justify-content:flex-end; gap:8px; padding:12px 20px; border-top:1px solid #deded8; background:#f4f4f0; }
+  .factory-btn { height:28px; padding:0 13px; border:1px solid #bfc0b9; background:#fff; color:#454640; font-size:11px; }
+  .factory-btn.primary { border-color:#30312d; background:#30312d; color:#fff; }
+  .factory-side { display:flex; gap:12px; }
+  .factory-side .factory-nav { width:34%; background:#f0f0eb; border-right:1px solid #d9d9d4; padding:14px 10px; }
+  .factory-side .factory-main { width:66%; padding:16px; }
+  .factory-nav div { padding:7px 8px; color:#70716a; font-size:11px; }
+  .factory-nav .active { color:#30312d; background:#deded8; font-weight:600; border-left:3px solid #30312d; }
+  .factory-stack .factory-head { background:#30312d; color:#fff; border:0; }
+  .factory-stack .factory-meta { color:#bfc0b9; }
+  .factory-stack .factory-body { background:#ecece7; }
+  .factory-stack .factory-row { background:#fff; padding:10px; margin-bottom:5px; border:1px solid #d9d9d4; }
+  .factory-stack .factory-actions { background:#deded8; }
+  @media (max-width:900px) { .factory-grid { grid-template-columns:1fr; } }
+</style>
+
+<div class="factory-grid">
+  <div class="factory-option" data-choice="A" onclick="toggleSelect(this)">
+    <div class="factory-label"><span>A · 标准面板</span><span class="factory-code">UTILITY / 01</span></div>
+    <div class="factory-modal">
+      <div class="factory-head"><div class="factory-title">导出「项目说明」</div><div class="factory-meta">选择输出格式 · 6 formats available</div></div>
+      <div class="factory-body"><div class="factory-search">⌕　搜索格式　　　　　　　　　6 个</div><div class="factory-list"><div class="factory-row"><span>Markdown</span><small>.md　推荐</small></div><div class="factory-row"><span>HTML</span><small>.html</small></div><div class="factory-row"><span>纯文本</span><small>.txt</small></div></div></div>
+      <div class="factory-actions"><button class="factory-btn">取消</button><button class="factory-btn primary">选择格式</button></div>
+    </div>
+  </div>
+
+  <div class="factory-option" data-choice="B" onclick="toggleSelect(this)">
+    <div class="factory-label"><span>B · 侧栏工位</span><span class="factory-code">WORKSTATION / 02</span></div>
+    <div class="factory-modal factory-side">
+      <div class="factory-nav"><div class="active">导出</div><div>文件信息</div><div>转换设置</div><div>历史记录</div></div>
+      <div class="factory-main"><div class="factory-title">输出格式</div><div class="factory-meta" style="display:block;margin-top:5px;">项目说明.md</div><div class="factory-list" style="margin-top:18px;"><div class="factory-row"><span>Markdown</span><small>.md</small></div><div class="factory-row"><span>HTML</span><small>.html</small></div><div class="factory-row"><span>JSON</span><small>.json</small></div></div><div class="factory-actions" style="margin:16px -16px -16px;"><button class="factory-btn">取消</button></div></div>
+    </div>
+  </div>
+
+  <div class="factory-option" data-choice="C" onclick="toggleSelect(this)">
+    <div class="factory-label"><span>C · 叠层清单</span><span class="factory-code">STACK / 03</span></div>
+    <div class="factory-modal factory-stack">
+      <div class="factory-head"><div class="factory-title">导出文件</div><div class="factory-meta">项目说明.md　/　OUTPUT FORMAT</div></div>
+      <div class="factory-body"><div class="factory-row"><span>Markdown</span><small>.md　推荐</small></div><div class="factory-row"><span>HTML</span><small>.html</small></div><div class="factory-row"><span>纯文本</span><small>.txt</small></div><div class="factory-row"><span>JSON</span><small>.json</small></div></div>
+      <div class="factory-actions"><button class="factory-btn">返回</button><button class="factory-btn primary">继续</button></div>
+    </div>
+  </div>
+</div>
+
+<p style="margin-top:22px;color:#73756d;font-size:13px;">共同方向：去掉渐变、圆角卡片和蓝色强调，改用灰白底、深灰标题栏、细边框、等宽小标签、低动效和明确的工具感。</p>

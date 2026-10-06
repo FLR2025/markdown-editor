@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!--
+      CSP: Vite dev 模式会使用 unsafe-eval (HMR runtime) 和 ws (HMR WebSocket)。
+      生产环境会通过 main 进程的 onHeadersReceived 注入更严格的 CSP。
+    -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: https: blob:; connect-src 'self' ws: wss: http: https:;" />
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <title>付小付 md 编辑器</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      /* JS 还没跑起来之前的占位动画，避免 dev 冷启动时的长时间白屏 */
+      html, body { margin: 0; padding: 0; height: 100%; background: #ffffff; }
+      #root { min-height: 100%; }
+      #boot {
+        position: fixed; inset: 0;
+        display: flex; flex-direction: column; align-items: center; justify-content: center;
+        gap: 14px;
+        font-family: -apple-system, BlinkMacSystemFont, "Inter", "PingFang SC", sans-serif;
+        color: #475569;
+        background: #ffffff;
+        z-index: 9999;
+        transition: opacity 200ms ease;
+      }
+      #boot.hidden { opacity: 0; pointer-events: none; }
+      #boot .ring {
+        width: 32px; height: 32px; border-radius: 50%;
+        border: 2.5px solid #e2e8f0;
+        border-top-color: #0ea5e9;
+        animation: tt-boot-spin 0.85s linear infinite;
+      }
+      #boot .title {
+        font-size: 14px; font-weight: 600; color: #0f172a;
+        letter-spacing: 0.02em;
+      }
+      #boot .sub {
+        font-size: 12px; color: #94a3b8;
+      }
+      @keyframes tt-boot-spin { to { transform: rotate(360deg); } }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+    <div id="boot">
+      <div class="ring"></div>
+      <div class="title">付小付 md 编辑器</div>
+      <div class="sub">正在启动…</div>
+    </div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

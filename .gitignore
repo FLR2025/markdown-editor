@@ -1,0 +1,55 @@
+# Dependencies
+node_modules/
+
+# Build output
+out/
+dist/
+release/
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Logs
+*.log
+npm-debug.log*
+pnpm-debug.log*
+
+# Cache
+.cache/
+.turbo/
+.vite/
+
+# Testing
+coverage/
+
+# Temporary files
+*.tmp
+*.temp
+*.bak
+*.orig
+
+# Electron
+*.asar
+*.asar.unpacked
+
+# Debug
+builder-debug.yml
+
+# Lock files (optional - some prefer to keep these)
+# pnpm-lock.yaml
+# package-lock.json

@@ -1,0 +1,9 @@
+allowBuilds:
+  '@parcel/watcher': true
+  app-builder-bin: true
+  dmg-license: true
+  electron: true
+  esbuild: true
+  iconv-lite: true
+  keytar: true
+  macos-alias: true
