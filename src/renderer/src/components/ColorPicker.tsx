@@ -25,7 +25,23 @@ type Props = {
 export default function ColorPicker({ value, onChange, children, title, triggerClass = 'tt-toolbar-btn' }: Props) {
   const [open, setOpen] = useState(false)
   const containerRef = useRef<HTMLDivElement>(null)
+  const dropdownRef = useRef<HTMLDivElement>(null)
   const [customColor, setCustomColor] = useState('')
+  const [position, setPosition] = useState<'left' | 'right'>('left')
+
+  // 检测下拉框位置，防止超出屏幕
+  useEffect(() => {
+    if (!open || !containerRef.current || !dropdownRef.current) return
+    const rect = containerRef.current.getBoundingClientRect()
+    const dropdownWidth = dropdownRef.current.offsetWidth
+    const viewportWidth = window.innerWidth
+    // 如果左侧空间不够，切换到右侧对齐
+    if (rect.left + dropdownWidth > viewportWidth - 8) {
+      setPosition('right')
+    } else {
+      setPosition('left')
+    }
+  }, [open])
 
   // 点击外部关闭
   useEffect(() => {
@@ -77,7 +93,10 @@ export default function ColorPicker({ value, onChange, children, title, triggerC
 
       {open && (
         <div
-          className="absolute left-0 top-full mt-1.5 z-50 bg-white border border-gray-200 rounded-xl shadow-lg p-3 w-56"
+          ref={dropdownRef}
+          className={`absolute top-full mt-1.5 z-50 bg-white border border-gray-200 rounded-xl shadow-lg p-3 w-56 ${
+            position === 'right' ? 'right-0' : 'left-0'
+          }`}
           style={{ boxShadow: '0 8px 24px rgba(0,0,0,0.12), 0 2px 6px rgba(0,0,0,0.06)' }}
         >
           {/* 预设色块 */}
@@ -110,7 +129,7 @@ export default function ColorPicker({ value, onChange, children, title, triggerC
                 setCustomColor(e.target.value)
                 onChange(e.target.value)
               }}
-              className="w-8 h-8 rounded cursor-pointer border border-gray-200 p-0.5"
+              className="w-8 h-8 rounded cursor-pointer border border-gray-200 p-0.5 flex-shrink-0"
               title="选择自定义颜色"
             />
             <input
@@ -119,12 +138,12 @@ export default function ColorPicker({ value, onChange, children, title, triggerC
               onChange={handleCustomChange}
               placeholder="#000000"
               maxLength={7}
-              className="flex-1 text-xs border border-gray-200 rounded px-2 py-1 font-mono outline-none focus:border-blue-400"
+              className="flex-1 min-w-0 text-xs border border-gray-200 rounded px-2 py-1 font-mono outline-none focus:border-blue-400"
             />
             {value && (
               <button
                 type="button"
-                className="text-xs text-gray-400 hover:text-red-500 ml-1"
+                className="text-xs text-gray-400 hover:text-red-500 flex-shrink-0"
                 onClick={() => handlePick('')}
                 title="清除颜色"
               >
