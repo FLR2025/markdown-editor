@@ -4,6 +4,7 @@
 
 ![macOS](https://img.shields.io/badge/macOS-Supported-brightgreen)
 ![Windows](https://img.shields.io/badge/Windows-Supported-brightgreen)
+![Web](https://img.shields.io/badge/Web-Supported-brightgreen)
 ![Electron](https://img.shields.io/badge/Electron-33.3.0-blue)
 ![React](https://img.shields.io/badge/React-18.3-blue)
 
@@ -20,6 +21,7 @@
 
 ## 支持的平台
 
+- 🌐 **Web** - 可在任何现代浏览器中运行
 - macOS 10.12+ (arm64 / x64)
 - Windows 10+ (x64)
 - Linux (AppImage)
@@ -57,7 +59,7 @@ pnpm dev
 # 构建应用
 pnpm build
 
-# 构建所有平台
+# 构建所有桌面平台
 pnpm build:all
 
 # 仅构建 macOS
@@ -65,6 +67,9 @@ pnpm build:mac
 
 # 仅构建 Windows
 pnpm build:win
+
+# 构建 Web 版本
+pnpm build:web
 ```
 
 ## 下载
